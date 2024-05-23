@@ -5,7 +5,6 @@ extends TextureProgressBar
 var duration = 0.5
 
 func change_value(new_value):
-	print(new_value)
 	value = new_value
 	
 	var tween = get_tree().create_tween()
