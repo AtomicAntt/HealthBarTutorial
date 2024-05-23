@@ -1,7 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://baq0rf8yuqq5e"]
+[gd_scene load_steps=18 format=3 uid="uid://baq0rf8yuqq5e"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_1pngp"]
 [ext_resource type="Texture2D" uid="uid://da27uxlxxy7l7" path="res://GameAssets/Player/mPlayer_[human].png" id="2_ha170"]
+[ext_resource type="PackedScene" uid="uid://brffuqkfiufmq" path="res://Scenes/UI/ProgressBar.tscn" id="3_jhbl0"]
+[ext_resource type="Texture2D" uid="uid://cudq22arx45ae" path="res://GameAssets/UI/SmallHealthBar.png" id="4_ky2tx"]
+[ext_resource type="Texture2D" uid="uid://dcaaooywtgx6x" path="res://GameAssets/UI/SmallProgressUnder.png" id="5_a2apu"]
+[ext_resource type="Texture2D" uid="uid://dfmm8l1sdvdk" path="res://GameAssets/UI/SmallDamageBar.png" id="6_up28s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aatji"]
 radius = 4.5
@@ -23,6 +27,22 @@ region = Rect2(64, 32, 32, 32)
 atlas = ExtResource("2_ha170")
 region = Rect2(96, 32, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jaoo"]
+atlas = ExtResource("2_ha170")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4i0h"]
+atlas = ExtResource("2_ha170")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4rgo"]
+atlas = ExtResource("2_ha170")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4mjp"]
+atlas = ExtResource("2_ha170")
+region = Rect2(96, 64, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_30epv"]
 animations = [{
 "frames": [{
@@ -41,6 +61,23 @@ animations = [{
 "loop": true,
 "name": &"Idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jaoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4i0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4rgo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4mjp")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_djftf"]
@@ -56,9 +93,9 @@ shape = SubResource("CapsuleShape2D_aatji")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(5, 4)
 sprite_frames = SubResource("SpriteFrames_30epv")
-animation = &"Idle"
+animation = &"Run"
 autoplay = "Idle"
-frame_progress = 0.274841
+frame_progress = 0.0189874
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -20)
@@ -69,3 +106,18 @@ position_smoothing_enabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(5, 8)
 shape = SubResource("RectangleShape2D_djftf")
+
+[node name="ProgressBar" parent="." groups=["health_bar"] instance=ExtResource("3_jhbl0")]
+offset_left = -9.0
+offset_top = -7.0
+offset_right = 21.0
+offset_bottom = -4.0
+texture_progress = ExtResource("4_ky2tx")
+
+[node name="ProgressUnder" parent="ProgressBar" index="0"]
+offset_right = 30.0
+offset_bottom = 3.0
+texture_under = ExtResource("5_a2apu")
+texture_progress = ExtResource("6_up28s")
+
+[editable path="ProgressBar"]
