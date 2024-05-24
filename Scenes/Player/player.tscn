@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_1pngp"]
 [ext_resource type="Texture2D" uid="uid://da27uxlxxy7l7" path="res://GameAssets/Player/mPlayer_[human].png" id="2_ha170"]
-[ext_resource type="PackedScene" uid="uid://brffuqkfiufmq" path="res://Scenes/UI/ProgressBar.tscn" id="3_jhbl0"]
+[ext_resource type="Script" path="res://Scenes/UI/ProgressBar.gd" id="4_avtes"]
 [ext_resource type="Texture2D" uid="uid://cudq22arx45ae" path="res://GameAssets/UI/SmallHealthBar.png" id="4_ky2tx"]
 [ext_resource type="Texture2D" uid="uid://dcaaooywtgx6x" path="res://GameAssets/UI/SmallProgressUnder.png" id="5_a2apu"]
 [ext_resource type="Texture2D" uid="uid://dfmm8l1sdvdk" path="res://GameAssets/UI/SmallDamageBar.png" id="6_up28s"]
@@ -95,7 +95,7 @@ position = Vector2(5, 4)
 sprite_frames = SubResource("SpriteFrames_30epv")
 animation = &"Run"
 autoplay = "Idle"
-frame_progress = 0.0189874
+frame_progress = 0.688132
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -20)
@@ -107,17 +107,20 @@ position_smoothing_enabled = true
 position = Vector2(5, 8)
 shape = SubResource("RectangleShape2D_djftf")
 
-[node name="ProgressBar" parent="." groups=["health_bar"] instance=ExtResource("3_jhbl0")]
+[node name="HealthBar" type="TextureProgressBar" parent="."]
 offset_left = -9.0
 offset_top = -7.0
 offset_right = 21.0
 offset_bottom = -4.0
+value = 100.0
 texture_progress = ExtResource("4_ky2tx")
+script = ExtResource("4_avtes")
 
-[node name="ProgressUnder" parent="ProgressBar" index="0"]
+[node name="ProgressUnder" type="TextureProgressBar" parent="HealthBar"]
+show_behind_parent = true
+layout_mode = 0
 offset_right = 30.0
 offset_bottom = 3.0
+value = 100.0
 texture_under = ExtResource("5_a2apu")
 texture_progress = ExtResource("6_up28s")
-
-[editable path="ProgressBar"]

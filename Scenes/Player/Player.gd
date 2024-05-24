@@ -39,4 +39,9 @@ func _physics_process(delta):
 
 func hurt(damage):
 	health -= damage
+	
+	# Child node health bar
+	$HealthBar.change_value((health/max_health)*100)
+	
+	# This is for the canvaslayer health bar
 	get_tree().call_group("health_bar", "change_value", (health/max_health)*100)
