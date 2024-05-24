@@ -1,12 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cf60se2008ilf"]
+[gd_scene load_steps=6 format=3 uid="uid://cf60se2008ilf"]
 
 [ext_resource type="Texture2D" uid="uid://dmq2w677y6lc0" path="res://GameAssets/Tilesets/Tilemap.png" id="1_8h8gy"]
-[ext_resource type="Texture2D" uid="uid://c8d57j7caav5c" path="res://GameAssets/UI/HealthBar.png" id="3_6adjw"]
 [ext_resource type="PackedScene" uid="uid://baq0rf8yuqq5e" path="res://Scenes/Player/player.tscn" id="3_psxws"]
 [ext_resource type="PackedScene" uid="uid://c5fpvhlqno6u0" path="res://Scenes/Obstacles/Spikes.tscn" id="4_00dda"]
-[ext_resource type="Script" path="res://Scenes/UI/ProgressBar.gd" id="4_rane1"]
-[ext_resource type="Texture2D" uid="uid://bb51bup8d4ri4" path="res://GameAssets/UI/ProgressUnder.png" id="5_prusp"]
-[ext_resource type="Texture2D" uid="uid://i6b51fordn8e" path="res://GameAssets/UI/DamageBar.png" id="6_ypdih"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cptgo"]
 texture = ExtResource("1_8h8gy")
@@ -586,25 +582,6 @@ layer_1/tile_data = PackedInt32Array()
 position = Vector2(40, -32)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer" groups=["health_bar"]]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 60.0
-offset_bottom = 15.0
-value = 100.0
-texture_progress = ExtResource("3_6adjw")
-script = ExtResource("4_rane1")
-metadata/_edit_use_anchors_ = true
-
-[node name="ProgressUnder" type="TextureProgressBar" parent="CanvasLayer/HealthBar"]
-show_behind_parent = true
-layout_mode = 0
-offset_right = 52.0
-offset_bottom = 7.0
-value = 100.0
-texture_under = ExtResource("5_prusp")
-texture_progress = ExtResource("6_ypdih")
 
 [node name="Spikes" parent="." instance=ExtResource("4_00dda")]
 position = Vector2(102, -24)

@@ -6,15 +6,21 @@ const JUMP_VELOCITY = -200.0
 var max_health = 80.0
 var health = 80.0
 
+var dead = false
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _physics_process(delta):
+	# If you are dead, don't do anything below
+	if dead:
+		return
+	
 	# Add the gravity.
 
 	velocity.y += gravity * delta
-
+		
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -38,10 +44,8 @@ func _physics_process(delta):
 	move_and_slide()
 
 func hurt(damage):
+	if health < 0:
+		dead = true
+		$AnimatedSprite2D.play("Die")
+	
 	health -= damage
-	
-	# Child node health bar
-	$HealthBar.change_value((health/max_health)*100)
-	
-	# This is for the canvaslayer health bar
-	get_tree().call_group("health_bar", "change_value", (health/max_health)*100)
