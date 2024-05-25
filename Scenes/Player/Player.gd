@@ -44,7 +44,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func hurt(damage):
-	if health < 0:
+	if health <= 0:
 		dead = true
 		$AnimatedSprite2D.play("Die")
 	
