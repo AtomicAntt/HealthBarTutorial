@@ -8,8 +8,6 @@ var health = 80.0
 
 var dead = false
 
-@onready var health_bar = $HealthBar
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
