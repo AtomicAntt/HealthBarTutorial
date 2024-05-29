@@ -581,7 +581,5 @@ layer_1/tile_data = PackedInt32Array()
 [node name="Player" parent="." instance=ExtResource("3_psxws")]
 position = Vector2(40, -32)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
 [node name="Spikes" parent="." instance=ExtResource("4_00dda")]
 position = Vector2(102, -24)
