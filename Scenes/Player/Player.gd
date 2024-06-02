@@ -8,6 +8,8 @@ var health = 80.0
 
 var dead = false
 
+@onready var health_bar = $HealthBar
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -47,6 +49,12 @@ func _physics_process(delta):
 
 func hurt(damage):
 	health -= damage
+	
+	var health_percentage = (health/max_health) * 100
+	
+	health_bar.change_value(health_percentage)
+	
+	get_tree().call_group("HealthBar", "change_value", health_percentage)
 	
 	if health <= 0:
 		dead = true

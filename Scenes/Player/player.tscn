@@ -1,7 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://baq0rf8yuqq5e"]
+[gd_scene load_steps=22 format=3 uid="uid://baq0rf8yuqq5e"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_1pngp"]
 [ext_resource type="Texture2D" uid="uid://da27uxlxxy7l7" path="res://GameAssets/Player/mPlayer_[human].png" id="2_ha170"]
+[ext_resource type="Texture2D" uid="uid://cudq22arx45ae" path="res://GameAssets/UI/SmallHealthBar.png" id="3_f8h6v"]
+[ext_resource type="Script" path="res://Scenes/UI/HealthBar.gd" id="4_jsao3"]
+[ext_resource type="Texture2D" uid="uid://dfmm8l1sdvdk" path="res://GameAssets/UI/SmallDamageBar.png" id="5_dpgrq"]
+[ext_resource type="Texture2D" uid="uid://dcaaooywtgx6x" path="res://GameAssets/UI/SmallProgressFrame.png" id="5_u1apv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aatji"]
 radius = 4.5
@@ -134,3 +138,21 @@ position_smoothing_enabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(5, 8)
 shape = SubResource("RectangleShape2D_djftf")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = -8.0
+offset_top = -7.0
+offset_right = 32.0
+offset_bottom = 33.0
+value = 100.0
+texture_progress = ExtResource("3_f8h6v")
+script = ExtResource("4_jsao3")
+
+[node name="DamageBar" type="TextureProgressBar" parent="HealthBar"]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+value = 100.0
+texture_under = ExtResource("5_u1apv")
+texture_progress = ExtResource("5_dpgrq")
